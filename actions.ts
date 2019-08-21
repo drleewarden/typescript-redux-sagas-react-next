@@ -17,5 +17,5 @@ export const fetchTasks = (): FetchTasksAction => ({
 
 export const addItem = (): AddItemsAction => ({
   type: 'ADD_ITEM',
-  items: [{ name: 'First Task' , description: 'Second Task' }]
+  items: [{ name: 'First' , description: 'Second Task' },{ name: ' Two' , description: 'Second ' },{ name: 'three' , description: 'Second Task' }]
 });

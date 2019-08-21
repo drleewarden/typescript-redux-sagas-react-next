@@ -24,23 +24,33 @@ interface AllProps
     OwnProps {}
 
 export class TasksList extends React.Component<AllProps> {
+  constructor(props: AllProps) {
+    super(props);
+    this.state = {
+        items:props.items,
+        tasks: props.tasks
+    }
+
+}
   onClick = () => {
     const { fetchTasks , addItem } = this.props;
+    console.log(this)
     fetchTasks();
     addItem();
   };
 
   render() {
     const { tasks, items} = this.props;
+    console.log(items)
     return (
       <div>
-        TEST:
+        TEST 6:
            <PhoneNumber mobile={'0455775052'} phone={'0243681899'}/>
-        <ul>{
-          items.map( item =>{
-              <li>{item.name}</li>
+        <ul> item: {
+          items.map( (item, i )=>{
+           return  <li key={i}>{item.name}</li>
           })
-        }
+        } task:
           {tasks.map((task, i) => {
             return <li key={i}>{task.title}</li>;
           })}
