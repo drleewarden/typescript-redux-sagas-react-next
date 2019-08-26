@@ -28,8 +28,6 @@ export function* getConsolidateDetails() {
         yield console.log(response.data.isProvided)
         yield response.data.isProvided ? isFirstSession(headerGetSuperFunds) : console.log('no')
 
-
-
     } catch (error) {
         console.log('error')
     }

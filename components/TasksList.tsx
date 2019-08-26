@@ -1,21 +1,26 @@
 import React from 'react';
-import { Task , Item} from '../types';
+import { Task , Item, Input} from '../types';
 import { connect } from 'react-redux';
 import { AppState } from '../reducer';
 import PhoneNumber from './form/number';
-import { fetchTasks, addItem } from '../actions';
+import { fetchTasks, addItem, getInputValue } from '../actions';
 
-interface OwnProps {}
+interface OwnProps {
+}
 
 interface StateProps {
   tasks: Task[];
   items: Item[];
+  input: string;
+
 
 }
 
 interface DispatchProps {
   fetchTasks: () => void;
   addItem: () => void;
+  getInputValue: () => void;
+
 }
 
 interface AllProps
@@ -28,22 +33,25 @@ export class TasksList extends React.Component<AllProps> {
     super(props);
     this.state = {
         items:props.items,
-        tasks: props.tasks
+        tasks: props.tasks,
+        input: props.input
     }
 
 }
   onClick = () => {
-    const { fetchTasks , addItem } = this.props;
+    const { fetchTasks , addItem, getInputValue } = this.props;
     console.log(this)
     fetchTasks();
     addItem();
+    getInputValue();
   };
 
   render() {
-    const { tasks, items} = this.props;
-    console.log(items)
+    const { tasks, items, input} = this.props;
+    console.log(input)
     return (
       <div>
+        <input id="inputText" value={input}  type="text" />
         TEST 6:
            <PhoneNumber mobile={'0455775052'} phone={'0243681899'}/>
         <ul> item: {
@@ -68,11 +76,13 @@ export const ConnectedTasksList = connect<
   AppState
 >(state => ({
     tasks: state.tasks,
-    items: state.items
+    items: state.items,
+    input: state.input
   }),
   dispatch => ({
     fetchTasks: () => dispatch(fetchTasks()),
-    addItem:()=> dispatch(addItem())
+    addItem:()=> dispatch(addItem()),
+    getInput:()=> dispatch(getInputValue())
 
   })
 )(TasksList);

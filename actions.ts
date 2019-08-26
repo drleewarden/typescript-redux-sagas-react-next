@@ -10,6 +10,11 @@ export interface AddItemsAction
   items: Item[];
 }
 
+export interface DisplayInputs
+  extends Action<'GET_INPUT'> {
+  input: string;
+}
+
 export const fetchTasks = (): FetchTasksAction => ({
   type: 'FETCH_TASKS',
   tasks: [{ title: 'First Task' }, { title: 'Second Task' }]
@@ -19,3 +24,8 @@ export const addItem = (): AddItemsAction => ({
   type: 'ADD_ITEM',
   items: [{ name: 'First' , description: 'Second Task' },{ name: ' Two' , description: 'Second ' },{ name: 'three' , description: 'Second Task' }]
 });
+
+export const getInputValue = (): DisplayInputs => ({
+  type: 'GET_INPUT',
+  input: 'test'
+})
